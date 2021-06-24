@@ -1,0 +1,72 @@
+name: PMSApplication
+options:
+#  preGenCommand: fastlane pull
+#  postGenCommand: carting update # 생성 이후 명령 실행
+  developmentLanguage: kr
+  deploymentTarget:
+    iOS: "11.0"
+#configs: # configuration 별 설정
+#    Debug: debug
+#    Release: release
+#configFiles:
+#    Debug: xcconfig/Project-Debug.xcconfig
+#    Release: xcconfig/Project-Release.xcconfig
+  
+settingGroups:
+  app:
+    DEVELOPMENT_TEAM: C2JSJLJ4FN
+targets:
+  PMSApplication:
+    scheme:
+      testTargets:
+        - PMSApplicationTests
+        - PMSApplicationUITests
+#      environmentVariables:
+#        IMAGE_DIFF_DIR: $(SOURCE_ROOT)/$(PROJECT_NAME)Tests/FailureDiffs
+#        FB_REFERENCE_IMAGE_DIR: $(SOURCE_ROOT)/$(PROJECT_NAME)Tests/ReferenceImages
+      language: Korean
+      region: South Korea
+#    configFiles:
+#      Debug: xcconfig/PMS-iOS-V2-Debug.xcconfig
+#      Release: xcconfig/PMS-iOS-V2-Release.xcconfig
+    sources:
+      excludes:
+          - "SceneDelegate.swift"
+          - "Main.storyboard"
+    settings:
+      groups: [app]
+      base:
+        INFOPLIST_FILE: PMSApplicationTests/Resource/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.dsm.PMSApplication
+        CURRENT_PROJECT_VERSION: 1
+        VERSIONING_SYSTEM: Apple Generic
+        CODE_SIGN_STYLE: Manual
+        DEVELOPMENT_TEAM: Z25H7B85Z8
+#        CODE_SIGN_ENTITLEMENTS: PMS-iOS-V2/Resource/PMS-iOS-V2.entitlements
+    type: application
+    platform: iOS
+    sources: [PMSApplication]
+    
+  PMSApplicationTests:
+    type: bundle.unit-test # 테스트 타입
+    platform: iOS # 플랫폼
+    sources: [PMSApplicationTests]
+#    configFiles:
+#      Debug: xcconfig/PMS-iOS-V2Tests-Debug.xcconfig
+#      Release: xcconfig/PMS-iOS-V2Tests-Release.xcconfig
+    settings:
+      groups: [app]
+      INFOPLIST_FILE: Resource/Info.plist # Info.plist 등록
+      commandLineArguments: [test: true]
+  PMSApplicationUITests:
+    type: bundle.ui-testing # 테스트 타입
+    platform: iOS # 플랫폼
+    sources: [PMSApplicationUITests]
+#    configFiles:
+#      Debug: xcconfig/PMS-iOS-V2UITests-Debug.xcconfig
+#      Release: xcconfig/PMS-iOS-V2UITests-Release.xcconfig
+    settings:
+      groups: [app]
+      INFOPLIST_FILE: Resource/Info.plist # Info.plist 등록
+      commandLineArguments: [test: true]
+#      FRAMEWORK_SEARCH_PATHS: $(inherited)
